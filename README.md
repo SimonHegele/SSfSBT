@@ -22,6 +22,6 @@ Tipp: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
 `python3 expression4nanosim.py [-h] [--remove_underscore] kallisto_file nanosim_file`
 
 Expression profiles are usually stored in -tsv-files with three rows ("target_id","est_counts","tpm").<br>
-Some tools like Kallisto produce additional columns, but NanoSim will not be able to read them.<br>
+Some tools like Kallisto (https://github.com/pachterlab/kallisto) produce additional columns, but NanoSim will not be able to read them.<br>
 Also, NanoSim has/had a bug where underscores in the target_id will cause it to fail,<br>
 so there is an option to remove them.
