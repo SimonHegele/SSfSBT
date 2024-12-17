@@ -5,7 +5,7 @@ from polars     import read_csv
 
 class MyArgumentParser(ArgumentParser):
 
-    prog        =   "kallisto2nanosim"
+    prog        =   "expression4nanosim"
 
     description =   """
                     ----------
