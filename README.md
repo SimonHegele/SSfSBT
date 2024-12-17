@@ -1,5 +1,5 @@
 # SSfSBT
-Small Scripts for Small Bioinformatics tasks
+Small Scripts for Small Bioinformatics Tasks
 
 ## Requirements
 
