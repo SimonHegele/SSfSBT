@@ -15,7 +15,7 @@ Small Scripts for Small Bioinformatics Tasks
 If -r is set a random sample is selected,<br>
 else simply the first reads of the files are used.
 
-Tipp: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
+Suggestion: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
 
 ### Converting expression files for NanoSim
 
