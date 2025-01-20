@@ -1,6 +1,6 @@
 from re import compile
 
-from src.io.file_services import fasta_file_service
+from . import fasta_file_service
 
 class FastgFileService(fasta_file_service.FastaFileService):
     """
