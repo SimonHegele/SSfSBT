@@ -4,8 +4,12 @@ Small Scripts for Small Bioinformatics Tasks
 ## Requirements
 
 - python3
-- polars
 
+- matplotlib
+- numpy
+- pandas
+- polars
+  
 ## Usage
 
 ### Subsampling reads
