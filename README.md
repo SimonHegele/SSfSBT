@@ -37,3 +37,7 @@ so there is an option to remove them.
 
 Will create a .tsv with the number of reads, number of bases, minimum read length, average read length, maximum read length and standart deviation of the reads.<br>
 Will also create a violinplot for the read length distribution.
+
+### Bugs / Known issues
+
+FastqFileService.read() fails when lines other than the sequence header line start with "@" which sometimes encodes a base quality value.
