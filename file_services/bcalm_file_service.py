@@ -1,6 +1,6 @@
 from re import compile, finditer
 
-from src.io.file_services import fasta_file_service
+from . import fasta_file_service
 
 class BcalmFileService(fasta_file_service.FastaFileService):
 
