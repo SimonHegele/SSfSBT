@@ -30,3 +30,10 @@ Some tools like Kallisto (https://github.com/pachterlab/kallisto) produce files 
 but NanoSim will not be able to read them.<br>
 Also, NanoSim has/had a bug where underscores in the target_id will cause it to fail,<br>
 so there is an option to remove them.
+
+### Basic read length analysis
+
+`python3 read_lengths.py [-h] file`
+
+Will create a .tsv with the number of reads, number of bases, minimum read length, average read length, maximum read length and standart deviation of the reads.<br>
+Will also create a violinplot for the read length distribution.
