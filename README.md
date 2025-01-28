@@ -13,7 +13,7 @@ Dependencies:
 
 `git clone https://github.com/SimonHegele/SSfSBT`<br>
 `cd SSfSBT`<br>
-`pip insatll .` (installs missing dependencies)
+`pip install .` (installs missing dependencies)
 
 ## Usage
 
