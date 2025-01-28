@@ -25,4 +25,29 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
     def parse_dict(cls, read: dict)->str:
         
         return "\n".join([read["header"],read["sequence"],read["info"],read["quality"]])+"\n"
+
+        @classmethod
+    def read(cls, file_path:str, only=inf)->Generator:
+         
+        string = ""
+        done   = 0
+        
+        with open(file_path, "r") as f:
+
+            for i, line in enumerate(f):
+
+                if (line[0] == cls.separator) and (i > 0):
+
+                    read = cls.parse_string(string)
+
+                    if len(read["sequence"]) == len(read["quality"]):
+                        yield read
+                        done += 1
+                        if done == only:
+                            return
+                        string = ""
+                        
+                string += line
+
+            yield cls.parse_string(string)
     
