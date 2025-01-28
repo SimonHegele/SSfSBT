@@ -1,15 +1,20 @@
 # SSfSBT
 Small Scripts for Small Bioinformatics Tasks
 
-## Requirements
+## Installation
 
-- python3
+Python >= 3.5 (I'm using type hints)
 
+Dependencies:
 - matplotlib
 - numpy
 - pandas
 - polars
-  
+
+`git clone https://github.com/SimonHegele/SSfSBT`<br>
+`cd SSfSBT`<br>
+`pip insatll .` (installs missing dependencies)
+
 ## Usage
 
 ### Subsampling reads
