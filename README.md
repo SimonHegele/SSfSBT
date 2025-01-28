@@ -39,5 +39,3 @@ Will create a .tsv with the number of reads, number of bases, minimum read lengt
 Will also create a violinplot for the read length distribution.
 
 ### Bugs / Known issues
-
-FastqFileService.read() fails when lines other than the sequence header line start with "@" which sometimes encodes a base quality value.
