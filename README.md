@@ -1,5 +1,7 @@
 # SSfSBT
-Small Scripts for Small Bioinformatics Tasks
+Small Scripts for Small Bioinformatics Tasks.
+
+Whenever I have a small task that I or someone else might face again at hand I will upload a script for it here.
 
 ## Installation
 
