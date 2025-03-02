@@ -54,6 +54,6 @@ Some tools like RATTLE or isONform however, prefer or require long reads in FAST
 This script will convert FASTA-files to FASTQ-files with Phred-scores according to the input quality-scores S for upper case bases and s for lower case bases<br>
 
 Example:<br>
-`lordec_fa2fq lordec.fasta 0.01 0.10`
+`python3 lordec_fa2fq lordec.fasta 0.01 0.10`
 
 ## Bugs / Known issues
