@@ -1,6 +1,7 @@
 # SSfSBT
 Small Scripts for Small Bioinformatics Tasks.
 
+It's a collection of Python commandline-tools I created for small tasks and intended as a backup for me.
 Whenever I have a small task that I or someone else might face again at hand I will upload a script for it here.
 
 ## Installation
@@ -19,6 +20,13 @@ Dependencies:
 
 ## Usage
 
+Things you can do with these tools
+- Sampling from nucleotide sequences
+- Filtering nucleotide sequences mapping to refernece sequences
+- File conversion: FASTA with lower case and upper case sequence characters for example from LoRDEC to FASTQ with two different quality values
+- File conversion: TSV with expression profiles to NanoSim-readable TSV.
+- Basic read length analysis
+
 ### Subsampling reads
 
 `python3 sample_reads.py [-h] [-r RANDOM] number in_file out_file`
@@ -27,6 +35,12 @@ If -r is set a random sample is selected,<br>
 else simply the first reads of the files are used.
 
 Suggestion: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
+
+### Mapping based sequnce filtering
+
+`python3 mapSample.py [-h] [-m MODE] [-t THREADS] [-s SCORE] query_file reference_file`
+
+Maps sequences from the query file to the sequences drom the reference file, filteres those with mappings with alignments that have scores equal or greater than SCORE and writes them to a separate file.
 
 ### Converting expression files for NanoSim
 
