@@ -149,11 +149,17 @@ def main():
          check=True)
     
     print("Indexing reference ...")
-    run(["minimap2",
-         "-x",args.mode,
-         "-t", str(args.threads),
-         "-d", args.reference_file+".mm2idx",
-         args.reference_file], check=True)
+    if args.mode == None:
+        run(["minimap2",
+            "-t", str(args.threads),
+            "-d", args.reference_file+".mm2idx",
+            args.reference_file], check=True)
+    else:
+        run(["minimap2",
+            "-x",args.mode,
+            "-t", str(args.threads),
+            "-d", args.reference_file+".mm2idx",
+            args.reference_file], check=True))
     
     print("Mapping ...")
     query_files = sorted([f for f in listdir() if args.query_file+"split" in f])
