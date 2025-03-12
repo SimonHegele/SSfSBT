@@ -36,12 +36,6 @@ else simply the first reads of the files are used.
 
 Suggestion: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
 
-### Mapping based sequnce filtering
-
-`python3 mapSample.py [-h] [-m MODE] [-t THREADS] [-s SCORE] query_file reference_file`
-
-Maps sequences from the query file to the sequences drom the reference file, filteres those with mappings with alignments that have scores equal or greater than SCORE and writes them to a separate file.
-
 ### Converting expression files for NanoSim
 
 `python3 expression4nanosim.py [-h] [--remove_underscore] kallisto_file nanosim_file`
