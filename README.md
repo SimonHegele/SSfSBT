@@ -22,7 +22,6 @@ Dependencies:
 
 Things you can do with these tools
 - Sampling from nucleotide sequences
-- Filtering nucleotide sequences mapping to refernece sequences
 - File conversion: FASTA with lower case and upper case sequence characters for example from LoRDEC to FASTQ with two different quality values
 - File conversion: TSV with expression profiles to NanoSim-readable TSV.
 - Basic read length analysis
