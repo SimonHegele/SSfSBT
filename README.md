@@ -111,8 +111,8 @@ The folder file_services contains usefull file services that can read from and w
 |--------------|--------------|--------------|-----------------|
 | FASTA        | ✅ | ✅ | Sequences
 | FASTQ | ✅ | ✅ | Sequences
-| PAF | ✅ | ✅ | Sequence alignments e.g. from Minimap2
-| SAM | ✅ | ✅ | Sequence alignments 
+| PAF | ✅ | ✅ | Sequence alignments from Minimap2
+| SAM | ✅ | ✅ | Sequence alignments from basically any other alignment tool
 | BCALM | ✅ | ❌ | De Bruijn Graph from BCALM
 | FASTG | ✅ | ❌ | De Bruijn Graph from SPAdes
 
