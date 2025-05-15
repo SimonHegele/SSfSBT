@@ -1,3 +1,6 @@
+from typing import Generator
+from math   import inf
+
 from . import fasta_like_file_service
 
 class FastqFileService(fasta_like_file_service.FastaLikeFileService):
@@ -26,7 +29,7 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
         
         return "\n".join([read["header"],read["sequence"],read["info"],read["quality"]])+"\n"
 
-        @classmethod
+    @classmethod
     def read(cls, file_path:str, only=inf)->Generator:
          
         string = ""
