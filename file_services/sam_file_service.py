@@ -40,8 +40,8 @@ class SamFileService():
     @classmethod
     def write(cls, mappings: list[dict], file: str)->None:
 
-        with open(file, "w") as paf:
+        with open(file, "w") as sam:
 
             for mapping in mappings:
 
-                paf.write(cls.parse_dict(mapping))
+                sam.write(cls.parse_dict(mapping))
