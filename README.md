@@ -20,7 +20,7 @@ Python >= 3.5 (I'm using type hints)
 Converting FASTA to FASTQ where lower and upper case denoted bases have different expected
 error rates.
 
-Examplary usecase:
+Examplary usecase:<br>
 The hybrid long read error correction tool LoRDEC outputs corrected long reads in
 FASTA-format with upper case characters for corrected regions and lower case characters
 for uncorrected regions. Long read transcriptome assembly tools such as RATTLE or isON
@@ -87,7 +87,7 @@ Why is this conversion required?<br>
 1. NanoSim can only read TSV-files with exactly three columns but Kallisto outputs five
 2. NanoSim has/had a bug where underscores in the target_id will cause it to fail 
 
-Examplary usecase:
+Examplary usecase:<br>
 For the evaluation of tools using short and long RNAseq reads you might want to simulate long reads with NanoSim that match the expression profile in your short read data.
 
 ```
