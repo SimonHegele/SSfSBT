@@ -41,7 +41,8 @@ class MyArgumentParser(ArgumentParser):
             error("File FASTA does not exist")
             exit(1)
         if path.isfile(".".join(self.args.FASTA.split(".")[:-1])+".fastq"):
-            error(f"{".".join(self.args.FASTA.split(".")[:-1])+".fastq"} exists")
+            outfile = ".".join(self.args.FASTA.split(".")[:-1])+".fastq"
+            error(f"{outfile} exists")
             exit(1)
 
         # Checking error values
