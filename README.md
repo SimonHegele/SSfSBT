@@ -40,7 +40,6 @@ positional arguments:
 options:
   -h, --help      show this help message and exit
   -o , --offset   Phred-quality offset (Default: 33)
-  -v, --verbose   Show conversion progress
 ```
 
 **sample**
