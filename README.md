@@ -1,66 +1,120 @@
 # SSfSBT
 Small Scripts for Small Bioinformatics Tasks.
 
-It's a collection of Python commandline-tools I created for small tasks and intended as a backup for me.
-Whenever I have a small task that I or someone else might face again at hand I will upload a script for it here.
+Collection of python scripts as a backup for me and hopefully a help for you!
 
 ## Installation
 
 Python >= 3.5 (I'm using type hints)
 
-Dependencies:
-- matplotlib
-- numpy
-- pandas
-- polars
-
 `git clone https://github.com/SimonHegele/SSfSBT`<br>
 `cd SSfSBT`<br>
-`pip install .` (installs missing dependencies)
+`pip install .`
 
 ## Usage
 
-Things you can do with these tools
-- Sampling from nucleotide sequences
-- File conversion: FASTA with lower case and upper case sequence characters for example from LoRDEC to FASTQ with two different quality values
-- File conversion: TSV with expression profiles to NanoSim-readable TSV.
-- Basic read length analysis
+### Commandline Tools:
 
-### Subsampling reads
+**fa2fq**
 
-`python3 sample_reads.py [-h] [-r RANDOM] number in_file out_file`
+Converting FASTA to FASTQ where lower and upper case denoted bases have different expected
+error rates.
 
-If -r is set a random sample is selected,<br>
-else simply the first reads of the files are used.
+Examplary usecase:
+The hybrid long read error correction tool LoRDEC outputs corrected long reads in
+FASTA-format with upper case characters for corrected regions and lower case characters
+for uncorrected regions. Long read transcriptome assembly tools such as RATTLE or isON
+accept or expect long reads in FASTQ-format. Using long reads precorrected with LoRDEC
+and their expected quality added with fa2fq can benefit the resulting assembly.
 
-Suggestion: -> Consider using Seqtk (https://github.com/lh3/seqtk) instead.
+```
+usage: fa2fq [-h] [-o] [-v] FASTA S s
 
-### Converting expression files for NanoSim
+FASTA to FASTQ conversion
 
-`python3 expression4nanosim.py [-h] [--remove_underscore] kallisto_file nanosim_file`
+positional arguments:
+  FASTA
+  S               Expected error rate for bases denoted with upper case characters
+  s               Expected error rate for bases denoted with lower case characters
 
-Expression profiles are usually stored in .tsv-files with three rows ("target_id","est_counts","tpm").<br>
-Some tools like Kallisto (https://github.com/pachterlab/kallisto) produce files with additional columns,<br>
-but NanoSim will not be able to read them.<br>
-Also, NanoSim has/had a bug where underscores in the target_id will cause it to fail,<br>
-so there is an option to remove them.
+options:
+  -h, --help      show this help message and exit
+  -o , --offset   Phred-quality offset (Default: 33)
+  -v, --verbose   Show conversion progress
+```
 
-### Basic read length analysis
+**sample**
 
-`python3 read_lengths.py [-h] file`
+Sampling sequences from FASTA/FASTQ-files.
 
-Will create a .tsv with the number of reads, number of bases, minimum read length, average read length, maximum read length and standart deviation of the reads.<br>
-Will also create a violinplot for the read length distribution.
+```
+usage: sample [-h] [-r] number in_file out_file
 
-### Converting FASTA-files with LoRDEC-corrected long reads to FASTQ-files
+---------- Sampling sequences from FASTA/FASTQ.
 
-`python3 lordec_fa2fq [-h] [--offset OFFSET] LoRDEC_fasta S s`
+positional arguments:
+  number        Number of sequences to sample
+  in_file
+  out_file
 
-LoRDEC outputs sequences with upper case characters for corrected bases and lower case characters for uncorrected bases in FASTA-format.<br>
-Some tools like RATTLE or isONform however, prefer or require long reads in FASTQ-format.<br>
-This script will convert FASTA-files to FASTQ-files with Phred-scores according to the input quality-scores S for upper case bases and s for lower case bases<br>
+options:
+  -h, --help    show this help message and exit
+  -r, --random  Sample randomly instead of first n sequence (slower)
+```
 
-Example:<br>
-`python3 lordec_fa2fq lordec.fasta 0.01 0.10`
+**lengths**
+
+Basic sequence length distribution analysis.
+Outputs a TSV and a PNG.
+
+```
+usage: lengths [-h] [-s] file
+
+Basic read length distribution analysis.
+
+positional arguments:
+  file           .fasta or .fastq
+
+options:
+  -h, --help     show this help message and exit
+  -s , --scale   Setting y-axis scale for violin plot [default: linear]
+```
+
+**kallisto2nanosim**
+
+Converting transcript abundance files from Kallisto for NanoSim.<br>
+Why is this conversion required?<br>
+1. NanoSim can only read TSV-files with exactly three columns but Kallisto outputs five
+2. NanoSim has/had a bug where underscores in the target_id will cause it to fail 
+
+Examplary usecase:
+For the evaluation of tools using short and long RNAseq reads you might want to simulate long reads with NanoSim that match the expression profile in your short read data.
+
+```
+usage: kallisto2nanosim [-h] [--remove_underscore] kallisto_file nanosim_file
+
+Converting Kallisto transcript abundance files for NanoSim.
+
+positional arguments:
+  kallisto_file
+  nanosim_file
+
+options:
+  -h, --help           show this help message and exit
+  --remove_underscore
+```
+
+### File services
+
+The folder file_services contains usefull file services that can read from and write to various files used in bioinformatics. They accept / return dictionaries.
+
+| File type    | Can read     | Can write    | Additional info |
+|--------------|--------------|--------------|-----------------|
+| FASTA        | ✅ | ✅ | Sequences
+| FASTQ | ✅ | ✅ | Sequences
+| PAF | ✅ | ✅ | Sequence alignments e.g. from Minimap2
+| SAM | ✅ | ✅ | Sequence alignments 
+| BCALM | ✅ | ❌ | De Bruijn Graph from BCALM
+| FASTG | ✅ | ❌ | De Bruijn Graph from SPAdes
 
 ## Bugs / Known issues
