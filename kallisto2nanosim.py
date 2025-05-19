@@ -53,7 +53,7 @@ def main():
     else:
         check_target_ids(df)
 
-    df.write_csv(args.nanosim_file, separator="\t")
+    df.write_csv(args.nanosim_file, separator="\t", index=False)
 
 if __name__ == "__main__":
     main()
