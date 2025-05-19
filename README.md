@@ -21,11 +21,14 @@ Converting FASTA to FASTQ where lower and upper case denoted bases have differen
 error rates.
 
 Examplary usecase:<br>
-The hybrid long read error correction tool LoRDEC outputs corrected long reads in
-FASTA-format with upper case characters for corrected regions and lower case characters
-for uncorrected regions. Long read transcriptome assembly tools such as RATTLE or isON
+The hybrid long read error correction tool
+[LoRDEC]([https://example.com)](http://www.atgc-montpellier.fr/lordec/) outputs corrected
+long reads in FASTA-format with upper case characters for corrected regions and lower case
+characters for uncorrected regions. Long read transcriptome assembly tools such as 
+[RATTLE](https://github.com/comprna/RATTLE) or [isON](https://github.com/aljpetri/isONform)
 accept or expect long reads in FASTQ-format. Using long reads precorrected with LoRDEC
-and their expected quality added with fa2fq can benefit the resulting assembly.
+and their expected quality added with fa2fq can improve the accuracy of the resulting
+assembly.
 
 ```
 usage: fa2fq [-h] [-o] [-v] FASTA S s
@@ -81,7 +84,8 @@ options:
 
 **kallisto2nanosim**
 
-Converting transcript abundance files from Kallisto for NanoSim.<br>
+Converting transcript abundance files from [Kallisto](https://github.com/pachterlab/kallisto)
+for [NanoSim](https://github.com/bcgsc/NanoSim).<br>
 Why is this conversion required?<br>
 1. NanoSim can only read TSV-files with exactly three columns but Kallisto outputs five
 2. NanoSim has/had a bug where underscores in the target_id will cause it to fail 
