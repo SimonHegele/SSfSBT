@@ -3,9 +3,6 @@ from re import compile
 from . import fasta_file_service
 
 class FastgFileService(fasta_file_service.FastaFileService):
-    """
-    Reading .fasta-files from bcalm and returning it's content as a polars.DataFrame
-    """
 
     r = compile(r"EDGE_(?P<ID>[a-zA-Z\d]+)_length_(?P<LENGTH>\d+)_cov_(?P<COVERAGE>[\d\.]+)")
 
