@@ -91,7 +91,7 @@ Why is this conversion required?<br>
 2. NanoSim has/had a bug where underscores in the target_id will cause it to fail 
 
 Examplary usecase:<br>
-For the evaluation of tools using short and long RNAseq reads you might want to simulate long reads with NanoSim that match the expression profile in your short read data.
+For the evaluation of hybrid tools using short and long RNAseq reads you might want to simulate long reads with NanoSim that match the expression profile in your short read data.
 
 ```
 usage: kallisto2nanosim [-h] [--remove_underscore] kallisto_file nanosim_file
