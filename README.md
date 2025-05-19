@@ -62,7 +62,7 @@ Sampling sequences from FASTA/FASTQ-files.
 ```
 usage: sample [-h] [-r] number in_file out_file
 
----------- Sampling sequences from FASTA/FASTQ.
+Sampling sequences from FASTA/FASTQ.
 
 positional arguments:
   number        Number of sequences to sample
