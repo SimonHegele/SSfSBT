@@ -3,7 +3,17 @@ Small Scripts for Small Bioinformatics Tasks.
 
 Collection of python scripts as a backup for me and hopefully a help for you!
 
-## Installation
+**Table of contents**
+1. Installation
+2. Usage
+&emsp;2.1 Commandline-Tools
+&emsp;&emsp;2.1.1 fa2fq
+&emsp;&emsp;2.1.2 sample
+&emsp;&emsp;2.1.3 lengths
+&emsp;&emsp;2.1.4 kallisto2nanosim
+&emsp;2.2 File services
+
+## 1 Installation
 
 Python >= 3.5 (I'm using type hints)
 
@@ -11,11 +21,11 @@ Python >= 3.5 (I'm using type hints)
 `cd SSfSBT`<br>
 `pip install .`
 
-## Usage
+## 2 Usage
 
-### Commandline Tools:
+### 2.1 Commandline-Tools:
 
-**fa2fq**
+**2.2.1 fa2fq**
 
 Converting FASTA to FASTQ where lower and upper case denoted bases have different expected
 error rates.
@@ -45,7 +55,7 @@ options:
   -o , --offset   Phred-quality offset (Default: 33)
 ```
 
-**sample**
+**2.2.2 sample**
 
 Sampling sequences from FASTA/FASTQ-files.
 
@@ -64,7 +74,7 @@ options:
   -r, --random  Sample randomly instead of first n sequence (slower)
 ```
 
-**lengths**
+**2.2.3 lengths**
 
 Basic sequence length distribution analysis.
 Outputs a TSV and a PNG.
@@ -82,7 +92,7 @@ options:
   -s , --scale   Setting y-axis scale for violin plot [default: linear]
 ```
 
-**kallisto2nanosim**
+**2.2.4 kallisto2nanosim**
 
 Converting transcript abundance files from [Kallisto](https://github.com/pachterlab/kallisto)
 for [NanoSim](https://github.com/bcgsc/NanoSim).<br>
@@ -107,7 +117,7 @@ options:
   --remove_underscore
 ```
 
-### File services
+### 2.2 File services
 
 The folder file_services contains usefull file services that can read from and write to various files used in bioinformatics. They accept / return dictionaries.
 
@@ -119,5 +129,3 @@ The folder file_services contains usefull file services that can read from and w
 | SAM | ✅ | ✅ | Pairwise sequence alignments from basically any other alignment tool
 | BCALM (FASTA) | ✅ | ❌ | De Bruijn Graph from BCALM
 | FASTG (FASTA) | ✅ | ❌ | De Bruijn Graph from SPAdes
-
-## Bugs / Known issues
