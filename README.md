@@ -5,7 +5,7 @@ Collection of python scripts as a backup for me and hopefully a help for you!
 
 **Table of contents**
 1. Installation
-2. Usage
+2. Usage<br>
 &emsp;2.1 Commandline-Tools<br>
 &emsp;&emsp;2.1.1 fa2fq<br>
 &emsp;&emsp;2.1.2 sample<br>
