@@ -21,7 +21,8 @@ class MyArgumentParser(ArgumentParser):
         self.add_argument("file", help=".fasta or .fastq")
         self.add_argument("-s","--scale",
                           help="Setting y-axis scale for violin plot [default: linear]",
-                          metavar=""
+                          metavar="",
+                          default="linear"
                           )
 
     def parse_args(self):
