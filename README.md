@@ -6,11 +6,11 @@ Collection of python scripts as a backup for me and hopefully a help for you!
 **Table of contents**
 1. Installation
 2. Usage
-&emsp;2.1 Commandline-Tools
-&emsp;&emsp;2.1.1 fa2fq
-&emsp;&emsp;2.1.2 sample
-&emsp;&emsp;2.1.3 lengths
-&emsp;&emsp;2.1.4 kallisto2nanosim
+&emsp;2.1 Commandline-Tools<br>
+&emsp;&emsp;2.1.1 fa2fq<br>
+&emsp;&emsp;2.1.2 sample<br>
+&emsp;&emsp;2.1.3 lengths<br>
+&emsp;&emsp;2.1.4 kallisto2nanosim<br>
 &emsp;2.2 File services
 
 ## 1 Installation
