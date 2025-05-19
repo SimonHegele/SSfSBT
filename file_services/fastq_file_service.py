@@ -31,7 +31,11 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
 
     @classmethod
     def read(cls, file_path:str, only=inf)->Generator:
-         
+
+        # Overrides method read inherited from parent class fasta_like_file_service.FastaLikeFileService
+        # -> In FASTQ-files, the character "@" at the start of a line either marks the beginning of a new
+        #    entry or refer to a phred score of 31.
+
         string = ""
         done   = 0
         
