@@ -119,7 +119,9 @@ options:
 
 ### 2.2 File services
 
-The folder file_services contains usefull file services that can read from and write to various files used in bioinformatics. They accept / return dictionaries.
+The folder file_services contains usefull file services that can read from and write to various files used in bioinformatics.<br>
+Their read()-methods are generators, yielding dictionaries.<br>
+Their write()-methods accept iterables of dictionaries.
 
 | File type    | Can read     | Can write    | Additional info |
 |--------------|--------------|--------------|-----------------|
