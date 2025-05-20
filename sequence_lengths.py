@@ -40,23 +40,34 @@ def main():
     file  = args.file
     scale = args.scale
 
+    print("Reading ...")
     read_lengths = [read["length"] for read in utils.get_read_reader(file).read(file)]
+    print("Done")
 
+    print("Evaluating ...")
     metrics = ["# reads","# bases","Min length","Avg length","Max length","Std"]
     values  = [len(read_lengths), sum(read_lengths), min(read_lengths), average(read_lengths), max(read_lengths), std(read_lengths)]
     values  = [int(round(v,0)) for v in values]
+    print("Done")
 
+    print("Data outputting ...")
     data = {"Metric": metrics,
             "Value":  values  }
     
     DataFrame(data).to_csv(file+".rld.tsv", sep="\t")
 
     fig, axes = subplots(figsize=(5,5))
+    
     axes.set_yscale(scale)
     
     violinplot([read_lengths], showmeans=True)
-
+    
     savefig(file+".rld.png")
+
+    print("Done")
+    print("##############################################")
+    print("#    Simon says: Thanks for using SSfSBT!    #")
+    print("##############################################")
     
 if __name__ == "__main__":
     main()
