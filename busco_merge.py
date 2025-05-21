@@ -40,8 +40,6 @@ def load_reports(busco_folder: str) -> list[dict]:
                 if file_name.startswith("short_summary.") and file_name.endswith(".json"):
                     report_file_paths.append(join(sub_dir_path, file_name))
                     break
-
-        return reports
     
     def load_from_files():
 
