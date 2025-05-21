@@ -11,6 +11,7 @@ Collection of python scripts as a backup for me and hopefully a help for you!
 &emsp;&emsp;2.1.2 sample<br>
 &emsp;&emsp;2.1.3 lengths<br>
 &emsp;&emsp;2.1.4 kallisto2nanosim<br>
+&emsp;&emsp;2.1.5 busco_merge<br>
 &emsp;2.2 File services
 
 ## 1 Installation
@@ -116,6 +117,10 @@ options:
   -h, --help           show this help message and exit
   --remove_underscore
 ```
+
+**2.2.4 busco_merge**
+
+Compiles the results of a folder with [BUSCO](https://github.com/metashot/busco)-results into a single dataframe and plot that are addes them to the folder.
 
 ### 2.2 File services
 
