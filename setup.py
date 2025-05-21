@@ -17,6 +17,7 @@ setup(
                 "sample=sequence_sample:main",
                 "lengths=sequence_lengths:main",
                 "kallisto2nanosim=kallisto2nanosim:main",
+                "busco_merge=busco_merge:main",
             ],
         },
 )
