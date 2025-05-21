@@ -84,10 +84,10 @@ def main():
 
     args = MyArgumentParser().parse_args()
 
-    logging.basicConfig(level    = "info",
+    logging.basicConfig(level    = logging.INFO,
                         format   = "%(asctime)s %(levelname)s %(message)s",
                         datefmt  = "%d-%m-%Y %H:%M:%S",
-                        handlers=[logging.StreamHandler(stream=sys.stdout)]
+                        handlers = [logging.StreamHandler(stream=sys.stdout)]
                         )
 
     P = phred(args.S, args.offset)
