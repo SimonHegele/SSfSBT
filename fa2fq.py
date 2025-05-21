@@ -4,6 +4,7 @@ from os         import path
 from typing     import Generator
 
 import logging
+import sys
 
 from file_services.fasta_file_service import FastaFileService
 from file_services.fastq_file_service import FastqFileService
