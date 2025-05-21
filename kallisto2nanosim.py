@@ -1,7 +1,8 @@
 from argparse   import ArgumentParser
-from logging    import warning
 from os         import path
 from polars     import read_csv
+
+import logging
 
 class MyArgumentParser(ArgumentParser):
 
@@ -39,9 +40,15 @@ def check_target_ids(dataframe):
                  "NanoSim has/had a bug that might cause it to break because of this.",
                  "Consider using the --remove-underscore parameter,",
                  "or check if the bug has been removed"]
-            warning("\n".join(w))
+            logging.warning("\n".join(w))
         
 def main():
+
+    logging.basicConfig(level    = "info",
+                        format   = "%(asctime)s %(levelname)s %(message)s",
+                        datefmt  = "%d-%m-%Y %H:%M:%S",
+                        handlers=[file_handler, stdout_handler]
+                        )
 
     args = MyArgumentParser().parse_args()
 
