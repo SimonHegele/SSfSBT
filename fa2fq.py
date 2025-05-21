@@ -1,8 +1,9 @@
 from argparse   import ArgumentParser
-from logging    import error, info
 from numpy      import log10
 from os         import path
 from typing     import Generator
+
+import logging
 
 from file_services.fasta_file_service import FastaFileService
 from file_services.fastq_file_service import FastqFileService
@@ -36,22 +37,22 @@ class MyArgumentParser(ArgumentParser):
 
         # Checking file paths
         if not path.isfile(self.args.FASTA):
-            error("File FASTA does not exist")
+            logging.error("File FASTA does not exist")
             exit(1)
         if path.isfile(".".join(self.args.FASTA.split(".")[:-1])+".fastq"):
             f_out = ".".join(self.args.FASTA.split(".")[:-1])+".fastq"
-            error(f"{f_out} exists")
+            logging.error(f"{f_out} exists")
             exit(1)
 
         # Checking error values
         if not ((0 < self.args.S) and (self.args.S < 1)):
-            error("S must be greater than 0 and smaller than 1")
+            logging.error("S must be greater than 0 and smaller than 1")
             exit(1)
         if not ((0 < self.args.s) and (self.args.s < 1)):
-            error("s must be greater than 0 and smaller than 1")
+            logging.error("s must be greater than 0 and smaller than 1")
             exit(1)
         if self.args.S > self.args.s:
-            error("S < s (Upper case character represent higher quality bases, therefore S should be smaller than s)")
+            logging.error("S < s (Upper case character represent higher quality bases, therefore S should be smaller than s)")
             exit(1)
 
     def parse_args(self):
@@ -69,7 +70,7 @@ def fasta_2_fastq(sequences: list[dict[str, str]], P: chr, p: chr) -> Generator:
 
     for i, sequence in enumerate(sequences):
         if i % 100_000 == 0:
-            print(f"{i:>10}")
+            logging.info(f"{i:>10}")
 
         sequence["file_type"]   = "fastq"
         sequence["info"]        = "+"
@@ -82,6 +83,12 @@ def main():
 
     args = MyArgumentParser().parse_args()
 
+    logging.basicConfig(level    = "info",
+                        format   = "%(asctime)s %(levelname)s %(message)s",
+                        datefmt  = "%d-%m-%Y %H:%M:%S",
+                        handlers=[file_handler, stdout_handler]
+                        )
+
     P = phred(args.S, args.offset)
     p = phred(args.s, args.offset)
 
@@ -91,9 +98,9 @@ def main():
 
     writer.write(f_out, fasta_2_fastq(reader.read(args.FASTA), P, p))
 
-    info("##############################################")
-    info("#    Simon says: Thanks for using SSfSBT!    #")
-    info("##############################################")
+    logging.info("##############################################")
+    logging.info("#    Simon says: Thanks for using SSfSBT!    #")
+    logging.info("##############################################")
 
 if __name__ == "__main__":
     main()
