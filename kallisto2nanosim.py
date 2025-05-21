@@ -3,6 +3,7 @@ from os         import path
 from polars     import read_csv
 
 import logging
+import sys
 
 class MyArgumentParser(ArgumentParser):
 
