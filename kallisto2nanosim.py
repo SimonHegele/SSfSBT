@@ -47,7 +47,7 @@ def main():
     logging.basicConfig(level    = "info",
                         format   = "%(asctime)s %(levelname)s %(message)s",
                         datefmt  = "%d-%m-%Y %H:%M:%S",
-                        handlers=[file_handler, stdout_handler]
+                        handlers = [logging.StreamHandler(stream=sys.stdout)]
                         )
 
     args = MyArgumentParser().parse_args()
