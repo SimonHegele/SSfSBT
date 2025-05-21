@@ -32,7 +32,7 @@ Converting FASTA to FASTQ where lower and upper case denoted bases have differen
 error rates.
 
 Examplary usecase:<br>
-The hybrid long read error correction tool [LoRDEC]([https://example.com)](http://www.atgc-montpellier.fr/lordec/) outputs corrected
+The hybrid long read error correction tool [LoRDEC](http://www.atgc-montpellier.fr/lordec/) outputs corrected
 long reads in FASTA-format with upper case characters for corrected regions and lower case
 characters for uncorrected regions. Long read transcriptome assembly tools such as 
 [RATTLE](https://github.com/comprna/RATTLE) or [isON](https://github.com/aljpetri/isONform)
