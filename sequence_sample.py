@@ -18,7 +18,9 @@ class MyArgumentParser(ArgumentParser):
 
         super().__init__(prog=self.prog, description=self.description)
 
-        self.add_argument("number", help="Number of sequences to sample")
+        self.add_argument("number",
+                          help="Number of sequences to sample",
+                          type=int)
         self.add_argument("in_file")
         self.add_argument("out_file")
         self.add_argument("-r","--random",
