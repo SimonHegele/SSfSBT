@@ -18,7 +18,7 @@ setup(
                 "lengths=sequence_lengths:main",
                 "kallisto2nanosim=kallisto2nanosim:main",
                 "busco_merge=busco_merge:main",
-                "unambigous_codes=unambigous_codes:main"
+                "unambiguous_codes=unambiguous_codes:main"
             ],
         },
 )
