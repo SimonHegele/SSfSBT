@@ -1,6 +1,9 @@
-from abc    import ABC, abstractmethod
-from math   import inf
-from typing import Generator
+from abc             import ABC, abstractmethod
+from collections.abc import Iterable
+from copy            import copy
+from math            import inf
+from random          import choice
+from typing          import Union, Generator
 
 class FastaLikeFileService(ABC):
 
@@ -35,7 +38,11 @@ class FastaLikeFileService(ABC):
             yield cls.parse_string(string)
 
     @classmethod
-    def write(cls, file_path: str, data: list[dict], mode="w", only=inf)->None:
+    def write(cls,
+              file_path: str,
+              data: Iterable[dict],
+              mode="w",
+              only=inf)->None:
 
         with open(file_path, mode) as file:
             for i, d in enumerate(data):
@@ -43,3 +50,27 @@ class FastaLikeFileService(ABC):
                     file.writelines(cls.parse_dict(d))
                 else:
                     return
+                
+    def unambigous_codes(cls,
+                         data: Iterable[dict],
+                         inplace = True) -> Generator:
+
+        translate = {"R": ["A","G"],
+                     "Y": ["C","T"],
+                     "S": ["G","C"],
+                     "W": ["A","T"],
+                     "K": ["G","T"],
+                     "M": ["A","C"],
+                     "B": ["C","G","T"],
+                     "D": ["A","G","T"],
+                     "H": ["A","C","T"],
+                     "V": ["A","C","G"],
+                     "N": ["A","C","G","T"]}
+        
+        for i, d in enumerate(data):
+            if not inplace:
+                d = copy(d)
+            for j, b in enumerate(d["sequence"]):
+                if not b in "ACGT":
+                    d["sequence"] = choice(translate[b])
+            yield d
