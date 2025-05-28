@@ -13,6 +13,7 @@ For details on installation, usage and examples, please refer to the [wiki](http
 &emsp;3 lengths<br>
 &emsp;4 kallisto2nanosim<br>
 &emsp;5 busco_merge<br>
+&emsp;6 unambigous_codes<br>
 
 ### File-Services
 &emsp;1 FASTA<br>
