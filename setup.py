@@ -19,6 +19,7 @@ setup(
                 "kallisto2nanosim=kallisto2nanosim:main",
                 "busco_merge=busco_merge:main",
                 "unambiguous_codes=unambiguous_codes:main"
+                "rnaQUASTcompare=rnaQUASTcompare:main"
             ],
         },
 )
