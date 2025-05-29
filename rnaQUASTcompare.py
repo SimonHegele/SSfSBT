@@ -63,11 +63,11 @@ class MyArgumentParser(ArgumentParser):
 
         super().__init__(prog=self.prog, description=self.description)
         
-        self.add_argument("report_dirs",   nargs='+', type=str, help=self.help["report_dirs"])
-        self.add_argument("-n","--names",  nargs='+', type=str, help=self.help["names"],      default=[])
-        self.add_argument("-c","--colors", nargs='+', type=str, help=self.help["colors"],     default=[])
-        self.add_argument("-t", "--title",            type=str, help=self.help["title"],      default="")
-        self.add_argument("-o","--outdir",            type=str,                               default="rnaQUASTcompare_"+
+        self.add_argument("report_dirs",               nargs='+', type=str, help=self.help["report_dirs"])
+        self.add_argument("-n","--names",  metavar="", nargs='+', type=str, help=self.help["names"],      default=[])
+        self.add_argument("-c","--colors", metavar="", nargs='+', type=str, help=self.help["colors"],     default=[])
+        self.add_argument("-t", "--title", metavar="",            type=str, help=self.help["title"],      default="")
+        self.add_argument("-o","--outdir", metavar="",            type=str,                               default="rnaQUASTcompare_"+
         datetime.now().strftime("%dd%mm%Yy_%Hh%Mm%Ss"))
 
     def arg_parse():
