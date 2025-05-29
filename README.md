@@ -3,7 +3,18 @@ Small Scripts for Small Bioinformatics Tasks.
 
 Collection of python scripts as a backup for me and hopefully a help for you!
 
-For details on installation, usage and examples, please refer to the [wiki](https://github.com/SimonHegele/SSfSBT/wiki).
+For details on usage and examples, please refer to the [wiki](https://github.com/SimonHegele/SSfSBT/wiki).
+
+## Installation
+
+```
+conda create -n ssfsbt # (optional but recommended)
+conda activate ssfsbt  # (optional but recommended)
+
+git clone https://github.com/SimonHegele/SSfSBT
+cd SSfSBT
+pip install .
+```
 
 ## Contents
 
@@ -19,6 +30,11 @@ busco_merge       | Merging multiple reports from BUSCO
 unambigous_codes  | Replacing ambiguity codes in FASTA/FASTQ-files
 
 ### File-Services
+
+SSfSBT provides a variety of file services that can read from and write to various files used in bioinformatics.
+They are located in the file_services folder. Each file service is a class providing class methods.<br> 
+Their read()-methods are generators, yielding dictionaries.<br>
+Their write()-methods accept iterables of dictionaries.
 
 | File type     | Can read | Can write | Additional info |
 |---------------|----------|-----------|-----------------|
