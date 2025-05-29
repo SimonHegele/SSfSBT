@@ -26,8 +26,9 @@ fa2fq             | FASTA to FASTQ conversion with different error rates for upp
 sample            | Subsampling a fixed number of sequences from FASTA/FASTQ-files
 lengths           | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
 kallisto2nanosim  | Converting expression profiles from Kallisto for NanoSim
-busco_merge       | Merging multiple reports from BUSCO
+busco_merge       | Merging multiple reports from BUSCO and compiling a plot
 unambigous_codes  | Replacing ambiguity codes in FASTA/FASTQ-files
+rnaQUASTcompare   | Merging multiple reports from rnaQUAST and compiling a plot
 
 ### File-Services
 
