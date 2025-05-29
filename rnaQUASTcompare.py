@@ -47,7 +47,6 @@ class MyArgumentParser(ArgumentParser):
     prog        =   "rnaQUASTcompare"
 
     description =   """
-                    ----------\n
                     Comparing rnaQUAST reports from multiple assemblies.\n
                     Generates combined Dataframes (.csv, tsv and .tex) and plots.\n
                     """
