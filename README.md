@@ -8,17 +8,23 @@ For details on installation, usage and examples, please refer to the [wiki](http
 ## Contents
 
 ### Commandline-Tools
-&emsp;1 fa2fq<br>
-&emsp;2 sample<br>
-&emsp;3 lengths<br>
-&emsp;4 kallisto2nanosim<br>
-&emsp;5 busco_merge<br>
-&emsp;6 unambigous_codes<br>
+
+Tool              | Summary
+------------------|--------
+fa2fq             | FASTA to FASTQ conversion with different error rates for upper and lower case denoted nucleotides
+sample            | Subsampling a fixed number of sequences from FASTA/FASTQ-files
+lengths           | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
+kallisto2nanosim  | Converting expression profiles from Kallisto for NanoSim
+busco_merge       | Merging multiple reports from BUSCO
+unambigous_codes  | Replacing ambiguity codes in FASTA/FASTQ-files
 
 ### File-Services
-&emsp;1 FASTA<br>
-&emsp;2 FASTQ<br>
-&emsp;3 PAF<br>
-&emsp;4 SAM<br>
-&emsp;5 BCALM<br>
-&emsp;6 FASTG<br>
+
+| File type     | Can read | Can write | Additional info |
+|---------------|----------|-----------|-----------------|
+| FASTA         | ✅       | ✅       | Sequences
+| FASTQ         | ✅       | ✅       | Sequences
+| PAF           | ✅       | ✅       | Pairwise sequence alignments from [Minimap2](https://github.com/lh3/minimap2)
+| SAM           | ✅       | ✅       | Pairwise sequence alignments from basically any other alignment tool
+| BCALM (FASTA) | ✅       | ❌       | De Bruijn Graph from BCALM
+| FASTG (FASTA) | ✅       | ❌       | De Bruijn Graph from SPAdes
