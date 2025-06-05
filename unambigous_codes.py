@@ -77,43 +77,6 @@ def process(sequences: list[dict]) -> tuple[list[dict], dict[str, int]]:
                 seq             = seq[:i] + choice(map[base]) + seq[i+1:]
 
     return sequences, replaced
-    
-def replace(sequences: Iterable[dict]):
-
-    n_bases   = 0
-    n_seqs    = 0
-    replaced  = defaultdict(int)
-
-    for i, sequence in enumerate(sequences):
-        if i % 100_000 == 0 and i > 0:
-            print(f"Processed: {i:>10}")
-        n_bases += sequence["length"]
-        n_seqs  += 1
-        for i, base in enumerate(sequence["sequence"]):
-            if not base in "ACGT":
-                replaced[base] += 1
-                sequence["sequence"]
-        yield sequence
-
-    def report():
-
-        keys = sorted(map.keys(), key=lambda key: len(map[key]))
-
-        codes = keys + ["Any"]
-        bases = [map[key] for key in keys] + [["A","C","G","T"]]
-        repla = [replaced[key] for key in keys] + [sum([replaced[key] for key in keys])]
-        uncer = sum([replaced[key]/len(map[key]) for key in keys])/n_bases
-
-        print(f"\n# Total sequences: {n_bases}")
-        print(f"# Total bases: {n_bases}\n")
-
-        print(DataFrame({"Ambigous code": codes,
-                         "Bases":         bases,
-                         "Replaced":      repla}))
-
-        print(f"\nUncertainty: {uncer:.10f}\n")
-
-    report()
 
 def threaded_writing(args) -> None:
 
