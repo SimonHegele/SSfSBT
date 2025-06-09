@@ -9,6 +9,7 @@ setup(
         'matplotlib',
         'numpy',
         'pandas',
+        'seaborn',
         ],
     package_dir={"": "."},
     entry_points={
