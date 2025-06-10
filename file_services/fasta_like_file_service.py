@@ -21,7 +21,6 @@ class FastaLikeFileService(ABC):
     def read(cls, file_path:str, only=inf)->Generator:
          
         string = ""
-        done   = 0
         
         with open(file_path, "r") as f:
 
@@ -29,8 +28,7 @@ class FastaLikeFileService(ABC):
 
                 if (line[0] == cls.separator) and (i > 0):
                     yield cls.parse_string(string)
-                    done += 1
-                    if done == only:
+                    if i == only:
                         return
                     string = ""
                 string += line
