@@ -37,7 +37,6 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
         #    entry or refer to a phred score of 31.
 
         string = ""
-        done   = 0
         
         with open(file_path, "r") as f:
 
@@ -49,8 +48,7 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
 
                     if len(read["sequence"]) == len(read["quality"]):
                         yield read
-                        done += 1
-                        if done == only:
+                        if i == only:
                             return
                         string = ""
                         
