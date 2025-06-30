@@ -69,13 +69,18 @@ def phred(error_rate: float, offset: int):
 
 def fasta_2_fastq(sequences: list[dict[str, str]], P: chr, p: chr) -> Generator:
 
+    if P == p:
+        quality = lambda sequence: P * sequence["length"]
+    else:
+        quality = lambda sequence: "".join([P if b.isupper() else p for b in sequence["sequence"]])
+
     for i, sequence in enumerate(sequences):
         if i % 100_000 == 0:
             logging.info(f"{i:>10}")
 
         sequence["file_type"]   = "fastq"
         sequence["info"]        = "+"
-        sequence["quality"]     = "".join([P if b.isupper() else p for b in sequence["sequence"]])
+        sequence["quality"]     = quality(sequence)
         sequence["sequence"]    = sequence["sequence"].upper()
 
         yield sequence
