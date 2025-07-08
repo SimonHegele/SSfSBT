@@ -9,6 +9,7 @@ setup(
         'matplotlib',
         'numpy',
         'pandas',
+        'polars',
         'seaborn',
         ],
     package_dir={"": "."},
