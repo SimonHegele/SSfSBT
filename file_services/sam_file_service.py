@@ -31,9 +31,9 @@ class SamFileService():
     @classmethod
     def read(cls, file)->Generator:
 
-        with open(file, "r") as paf:
+        with open(file, "r") as sam:
 
-            for line in paf:
+            for line in sam:
 
                 yield cls.parse_line(line)
 
