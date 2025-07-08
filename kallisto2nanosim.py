@@ -19,7 +19,8 @@ class MyArgumentParser(ArgumentParser):
 
         self.add_argument("kallisto_file")
         self.add_argument("nanosim_file")
-        self.add_argument("--remove_underscore", action='store_true')
+        self.add_argument("-r","--remove_underscore",
+                          action='store_true')
 
     def parse_args(self):
 
