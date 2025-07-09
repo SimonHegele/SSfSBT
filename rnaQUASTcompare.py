@@ -187,21 +187,13 @@ def data_preprocessing(args):
     else:
         names = [sr.columns[1] for sr in reports]
 
-    if any(args.names):
 
-        combined = DataFrame({"metrics": reports[0]['metrics']})
+    combined = DataFrame({"metrics": reports[0]['metrics']})
 
-        for i, sr in enumerate(reports):
-            combined[names[i]] = sr[sr.columns[1]]
-        save_as = path.join(args.outdir, "combined_data_absolutes")
-        store_data(combined, save_as)
-        
-        """
-        for i, sr in enumerate(reports):
-            combined[names[i]+' (scaled)']   = ValueScaler().get_scaled_values(reports, i)
-        save_as = path.join(args.outdir, "combined_data_all")
-        store_data(combined, save_as)
-        """
+    for i, sr in enumerate(reports):
+        combined[names[i]] = sr[sr.columns[1]]
+    save_as = path.join(args.outdir, "combined_data_absolutes")
+    store_data(combined, save_as)
         
     return combined
 
