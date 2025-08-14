@@ -5,7 +5,7 @@ from file_services.fastq_file_service import FastqFileService
 
 class MyArgumentParser(ArgumentParser):
 
-    prog        =   "fa2fq"
+    prog        =   "f12fa"
 
     description =   """
                     FASTQ to FASTA conversion
@@ -24,4 +24,5 @@ def main():
     FastaFileService().write(args.FASTQ[:-1]+"a", FastqFileService.read(args.FASTQ))
 
 if __name__ == "__main__":
+
     main()
