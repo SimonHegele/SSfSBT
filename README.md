@@ -22,14 +22,15 @@ pip install .
 
 Tool                    | Summary
 ------------------------|--------
-fa2fq                   | FASTA to FASTQ conversion with different error rates for upper and lower case denoted nucleotides
-sample                  | Subsampling a fixed number of sequences from FASTA/FASTQ-files
-lengths                 | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
-kallisto2nanosim        | Converting expression profiles from Kallisto for NanoSim
 busco_merge             | Merging multiple reports from BUSCO and compiling a plot
-unambiguous_codes       | Replacing ambiguity codes in FASTA/FASTQ-files
-rnaQUASTcompare         | Merging multiple reports from rnaQUAST and compiling a plot
+busco_transcripts       | Identifying assembled transcript of BUSCOs using BLASTX or DIAMOND
+kallisto2nanosim        | Converting expression profiles from Kallisto for NanoSim
+lengths                 | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
 lr_lordec_contam_filter | Filtering contamination from long reads corrected by LoRDEC with Kraken2 filtered short reads
+fa2fq                   | FASTA to FASTQ conversion with different error rates for upper and lower case denoted nucleotides
+rnaQUASTcompare         | Merging multiple reports from rnaQUAST and compiling a plot
+sample                  | Subsampling a fixed number of sequences from FASTA/FASTQ-files
+unambiguous_codes       | Replacing ambiguity codes in FASTA/FASTQ-files
 
 ### File-Services
 
