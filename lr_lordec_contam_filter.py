@@ -82,6 +82,11 @@ def main():
     print("In accepted reads:")
     print(f"Bases corrected:    {bases_accepted_corrected:>10} ({(bases_accepted_corrected/bases_accepted)*100:.3f}%)")
     print(f"Bases uncorrected:  {bases_accepted_uncorrected:>10} ({(bases_accepted_uncorrected/bases_accepted)*100:.3f}%)")
+    print()
+    print("##############################################")
+    print("#    Simon says: Thanks for using SSfSBT!    #")
+    print("##############################################")
 
 if __name__ == "__mai_":
+
     main()
