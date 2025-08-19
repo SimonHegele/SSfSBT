@@ -274,6 +274,11 @@ def main():
 
     Plotter().plot(data,args)
 
+    print("##############################################")
+    print("#    Simon says: Thanks for using SSfSBT!    #")
+    print("##############################################")
+
 if __name__ == '__main__':
     
     main()
+
