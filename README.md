@@ -32,6 +32,8 @@ rnaQUASTcompare         | Merging multiple reports from rnaQUAST and compiling a
 sample                  | Subsampling a fixed number of sequences from FASTA/FASTQ-files
 unambiguous_codes       | Replacing ambiguity codes in FASTA/FASTQ-files
 
+Check the [wiki](https://github.com/SimonHegele/SSfSBT/wiki) for detailed description of each script!
+
 ### File-Services
 
 SSfSBT provides a variety of file services that can read from and write to various files used in bioinformatics.
