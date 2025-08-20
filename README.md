@@ -23,7 +23,6 @@ pip install .
 Tool                    | Summary
 ------------------------|--------
 busco_merge             | Merging multiple reports from BUSCO and compiling a plot
-busco_transcripts       | Identifying assembled transcript of BUSCOs using BLASTX or DIAMOND
 kallisto2nanosim        | Converting expression profiles from Kallisto for NanoSim
 lengths                 | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
 lr_lordec_contam_filter | Filtering contamination from long reads corrected by LoRDEC with Kraken2 filtered short reads
