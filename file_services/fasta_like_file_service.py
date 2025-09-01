@@ -48,7 +48,7 @@ class FastaLikeFileService(ABC):
                     file.writelines(cls.parse_dict(d))
                 else:
                     return
-                
+    @classmethod            
     def unambigous_codes(cls,
                          data: Iterable[dict],
                          inplace = True) -> Generator:
@@ -72,3 +72,4 @@ class FastaLikeFileService(ABC):
                 if not b in "ACGT":
                     d["sequence"] = choice(translate[b])
             yield d
+
