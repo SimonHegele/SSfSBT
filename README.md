@@ -22,6 +22,7 @@ pip install .
 
 Tool                    | Summary
 ------------------------|--------
+busco_find              | Extracting BUSCO transcript sequences
 busco_merge             | Merging multiple reports from BUSCO and compiling a plot
 kallisto2nanosim        | Converting expression profiles from Kallisto for NanoSim
 lengths                 | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
