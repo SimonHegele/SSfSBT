@@ -44,7 +44,7 @@ Their write()-methods accept iterables of dictionaries.
 | File type     | Can read | Can write | Additional info |
 |---------------|----------|-----------|-----------------|
 | FASTA         | ✅       | ✅       | Sequences
-| FASTQ         | ✅       | ✅       | Sequences
+| FASTQ         | ✅       | ✅       | Sequences with qualities
 | PAF           | ✅       | ✅       | Pairwise sequence alignments from [Minimap2](https://github.com/lh3/minimap2)
 | SAM           | ✅       | ✅       | Pairwise sequence alignments from basically any other alignment tool
 | BCALM (FASTA) | ✅       | ❌       | De Bruijn Graph from BCALM
