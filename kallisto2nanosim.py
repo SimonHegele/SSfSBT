@@ -64,5 +64,10 @@ def main():
 
     df.write_csv(args.nanosim_file, separator="\t", index=False)
 
+    print("##############################################")
+    print("#    Simon says: Thanks for using SSfSBT!    #")
+    print("##############################################")
+
 if __name__ == "__main__":
     main()
+
