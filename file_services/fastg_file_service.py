@@ -10,7 +10,7 @@ class FastgFileService(fasta_file_service.FastaFileService):
     def parse_string(cls, string: str)->dict:
 
         lines    = string.split(";")
-        header   = lines[0]
+        header   = lines[0][1:]
         id       = cls.r.search(header.split(":")[0]).group("ID")
         length   = cls.r.search(header.split(":")[0]).group("LENGTH")
         coverage = cls.r.search(header.split(":")[0]).group("COVERAGE")
@@ -38,3 +38,4 @@ class FastgFileService(fasta_file_service.FastaFileService):
                 "rc": rc,
                 "neighbors": neighbors,
                 "file_type": "fasta"}
+
