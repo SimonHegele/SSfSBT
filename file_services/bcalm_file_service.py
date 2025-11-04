@@ -20,10 +20,11 @@ class BcalmFileService(fasta_file_service.FastaFileService):
 
         return {
             "id":              cls.r["id"].search(lines[0]).group("ID"),
-            "header":          lines[0],
+            "header":          lines[0][1:],
             "length":          cls.r["length"].search(lines[0]).group("LENGTH"),
             "total abundance": int(cls.r["total abundance"].search(lines[0]["header"]).group("TOTAL_ABUNDANCE")),
             "avg. abundance":  float(cls.r["avg. abundance"].search(lines[0]["header"]).group("AVG_ABUNDANCE")),
             "sequence":        "".join(lines[1:]),
             "edges":           [match.group("EDGE") for match in finditer(cls.r["edges"], lines[0])],
             "neighbors":       [match.group("NEIGHBOR") for match in finditer(cls.r["neighbors"], lines[0])]}
+
