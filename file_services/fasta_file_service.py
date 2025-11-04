@@ -19,5 +19,5 @@ class FastaFileService(fasta_like_file_service.FastaLikeFileService):
     @classmethod
     def parse_dict(cls, read: dict)->str:
         
+        return cls.separator+read["header"]+"\n"+read["sequence"]+"\n"
 
-        return read["header"]+"\n"+read["sequence"]+"\n"
