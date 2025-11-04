@@ -11,7 +11,7 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
     def parse_string(cls, string: str)->dict:
 
         lines    = string.rstrip().split("\n")
-        header   = lines[0]
+        header   = lines[0][1:]
         i        = [i for i, line in enumerate(lines) if line[0]=="+"][0]
         sequence = "".join(lines[1:i])
         info     = lines[i]
@@ -56,3 +56,4 @@ class FastqFileService(fasta_like_file_service.FastaLikeFileService):
 
             yield cls.parse_string(string)
     
+
