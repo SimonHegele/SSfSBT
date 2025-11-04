@@ -8,7 +8,7 @@ class FastaFileService(fasta_like_file_service.FastaLikeFileService):
     def parse_string(cls, string: str)->dict:
 
         lines    = string.split("\n")
-        header   = lines[0]
+        header   = lines[0][1:]
         sequence = "".join(lines[1:])
 
         return {"header": header,
@@ -19,4 +19,5 @@ class FastaFileService(fasta_like_file_service.FastaLikeFileService):
     @classmethod
     def parse_dict(cls, read: dict)->str:
         
+
         return read["header"]+"\n"+read["sequence"]+"\n"
