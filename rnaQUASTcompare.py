@@ -1,10 +1,10 @@
 from argparse   import ArgumentParser
 from datetime   import datetime
-from matplotlib import patches, pyplot
+from matplotlib import lines, pyplot
 from numpy      import max
 from os         import path
-from pandas     import concat, DataFrame, read_csv
 from pathlib    import Path
+from pandas     import concat, DataFrame, read_csv
 from random     import choice
 from re         import search
 
@@ -47,6 +47,7 @@ class MyArgumentParser(ArgumentParser):
     prog        =   "rnaQUASTcompare"
 
     description =   """
+                    ----------\n
                     Comparing rnaQUAST reports from multiple assemblies.\n
                     Generates combined Dataframes (.csv, tsv and .tex) and plots.\n
                     """
@@ -55,7 +56,9 @@ class MyArgumentParser(ArgumentParser):
             "report_dirs": "paths to output directories from rnaQUAST",
             "names":       "list of names for the assemblies (default=[\"auto\"])",
             "colors":      "list of colors in hexcode (default=[\"auto\"])",
-            "title":       "main title for plot"
+            "title":       "main title for plot",
+            "dpi":         "quality of the plot as dpi (default=1000)",
+            "lines":       "linestyles (default=[\"solid\",...,\"solid\"])"
         }
     
     def __init__(self) -> None:
@@ -65,11 +68,13 @@ class MyArgumentParser(ArgumentParser):
         self.add_argument("report_dirs",               nargs='+', type=str, help=self.help["report_dirs"])
         self.add_argument("-n","--names",  metavar="", nargs='+', type=str, help=self.help["names"],      default=[])
         self.add_argument("-c","--colors", metavar="", nargs='+', type=str, help=self.help["colors"],     default=[])
+        self.add_argument("-l","--lines",  metavar="", nargs='+', type=str, help=self.help["lines"])
         self.add_argument("-t", "--title", metavar="",            type=str, help=self.help["title"],      default="")
+        self.add_argument("-d","--dpi",    metavar="",            type=int, help=self.help["dpi"],        default=1000)
         self.add_argument("-o","--outdir", metavar="",            type=str,                               default="rnaQUASTcompare_"+
         datetime.now().strftime("%dd%mm%Yy_%Hh%Mm%Ss"))
 
-    def arg_parse():
+    def arg_parse(self):
 
         args = super().argparse()
 
@@ -82,7 +87,8 @@ class MyArgumentParser(ArgumentParser):
 
 class ReportParser():
 
-    def get_number_of_isoforms(cls, file_path: str)->int:
+    @classmethod
+    def get_number_of_isoforms(cls, file_path: str)->float:
         """
         Parameters:
             file_path (str), path of a database_metrics.txt-file
@@ -93,6 +99,8 @@ class ReportParser():
             for line in file:
                 if line.startswith("Isoforms"):
                     return float(search(r'[-+]?\d*\.?\d+', line).group(0))
+        raise Exception(f"Could not detemine number of isoforms from {file_path}")
+    
                 
     @classmethod
     def mmpt_to_mmpkb(cls, sr: DataFrame):
@@ -110,6 +118,7 @@ class ReportParser():
         sr.loc[i,"metrics"]     = "Avg. mismatches per aligned kb"
         sr.loc[i,sr.columns[1]] = 1000 * av_mm / av_al
     
+    @classmethod
     def parse_report(cls, report_dir):
 
         # Loading short report
@@ -177,7 +186,11 @@ def store_data(data: DataFrame, save_as: str):
 
 def data_preprocessing(args):
     """
-    Loads, combines and scales
+    Loads, combines, scales and saves ...
+    
+    Writing that made me realize that this is bad code. Hey, future me, fix this!
+    
+    Hey, past me, I am busy, double it and pass it to the next version of me ;)
     """
 
     reports = [ReportParser().parse_report(report_dir) for report_dir in args.report_dirs]
@@ -187,13 +200,19 @@ def data_preprocessing(args):
     else:
         names = [sr.columns[1] for sr in reports]
 
-
     combined = DataFrame({"metrics": reports[0]['metrics']})
 
     for i, sr in enumerate(reports):
         combined[names[i]] = sr[sr.columns[1]]
     save_as = path.join(args.outdir, "combined_data_absolutes")
     store_data(combined, save_as)
+        
+    """
+    for i, sr in enumerate(reports):
+        combined[names[i]+' (scaled)']   = ValueScaler().get_scaled_values(reports, i)
+    save_as = path.join(args.outdir, "combined_data_all")
+    store_data(combined, save_as)
+    """
         
     return combined
 
@@ -212,17 +231,19 @@ class Plotter():
         axes.grid(axis='y', linestyle='--', linewidth=0.5)
         axes.set_title(title, fontweight='bold', fontsize=30)
 
-    def fill_lines(cls, axes, data, metrics, colors):
+    @classmethod
+    def fill_lines(cls, axes, data, metrics, colors, linestyles):
     
         xmax = 0
         for i, assembly in enumerate(data.columns[1:]):
             x = data.loc[data["metrics"].isin(metrics)][assembly]
             xmax = max([max(x),xmax])
-            axes.plot(x, range(x.shape[0]), c=colors[i], linewidth=3)
+            axes.plot(x, range(x.shape[0]), c=colors[i], linewidth=3, linestyle=linestyles[i])
 
         axes.set_xlim(xmin=0,xmax=xmax)
         axes.set_xticklabels(axes.get_xticks(), rotation=45)
 
+    @classmethod
     def get_colors(cls, args):
 
         if any(args.colors):
@@ -231,6 +252,7 @@ class Plotter():
             return ["#"+"".join([choice("0123456789abcdef") for _ in range(6)])
                     for _ in args.report_dirs]
    
+    @classmethod
     def plot(cls, data, args):
 
         fig, axes = pyplot.subplots(2,2, figsize=(25,20))
@@ -244,14 +266,16 @@ class Plotter():
         cls.empty_subplot(axes[1][0], isoforms_metrics,     "Isoform metrics")
         cls.empty_subplot(axes[1][1], other_metrics,        "Other metrics")
 
-        colors = cls.get_colors(args) # args.colors if set, else random colors
+        colors     = cls.get_colors(args) # args.colors if set, else random colors
+        linestyles = ["solid" for _ in args.report_dirs] if args.lines is None else args.lines
         
-        cls.fill_lines(axes[0][0], data, gene_metrics,        colors)
-        cls.fill_lines(axes[0][1], data, transcripts_metrics, colors)
-        cls.fill_lines(axes[1][0], data, isoforms_metrics,    colors)
-        cls.fill_lines(axes[1][1], data, other_metrics,       colors)
+        cls.fill_lines(axes[0][0], data, gene_metrics,        colors, linestyles)
+        cls.fill_lines(axes[0][1], data, transcripts_metrics, colors, linestyles)
+        cls.fill_lines(axes[1][0], data, isoforms_metrics,    colors, linestyles)
+        cls.fill_lines(axes[1][1], data, other_metrics,       colors, linestyles)
 
-        pyplot.legend([patches.Rectangle([0,0],5,5,color=c) for c in colors],
+        pyplot.legend([lines.Line2D([0], [0], color=c, linestyle=ls, linewidth=3)
+                       for c, ls in zip(colors, linestyles)],
                       data.columns[1:],
                       bbox_to_anchor=(-9, -2.25, 5, 5),
                       fontsize=30)
@@ -274,11 +298,6 @@ def main():
 
     Plotter().plot(data,args)
 
-    print("##############################################")
-    print("#    Simon says: Thanks for using SSfSBT!    #")
-    print("##############################################")
-
 if __name__ == '__main__':
     
     main()
-
