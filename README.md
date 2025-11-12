@@ -8,8 +8,8 @@ For details on usage and examples, please refer to the [wiki](https://github.com
 ## Installation
 
 ```
-conda create -n ssfsbt # (optional but recommended)
-conda activate ssfsbt  # (optional but recommended)
+conda create -n ssfsbt python>=3.10 # (optional but recommended)
+conda activate ssfsbt               # (optional but recommended)
 
 git clone https://github.com/SimonHegele/SSfSBT
 cd SSfSBT
