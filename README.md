@@ -28,6 +28,8 @@ kallisto2nanosim        | Converting expression profiles from Kallisto for NanoS
 lengths                 | Basic sequence length distribution analysis for one or more FASTA/FASTQ-files
 lr_lordec_contam_filter | Filtering contamination from long reads corrected by LoRDEC with Kraken2 filtered short reads
 fa2fq                   | FASTA to FASTQ conversion with different error rates for upper and lower case denoted nucleotides
+fq2fa                   | FASTQ to FASTA conversion
+gfa2fa                  | FASTQ to FASTA conversion
 rnaQUASTcompare         | Merging multiple reports from rnaQUAST and compiling a plot
 sample                  | Subsampling a fixed number of sequences from FASTA/FASTQ-files
 unambiguous_codes       | Replacing ambiguity codes in FASTA/FASTQ-files
@@ -49,3 +51,4 @@ Their write()-methods accept iterables of dictionaries.
 | SAM           | ✅       | ✅       | Pairwise sequence alignments from basically any other alignment tool
 | BCALM (FASTA) | ✅       | ❌       | De Bruijn Graph from BCALM
 | FASTG (FASTA) | ✅       | ❌       | De Bruijn Graph from SPAdes
+| GFA           | ✅       | ❌       | Assembly graphs, currently only reads segments
