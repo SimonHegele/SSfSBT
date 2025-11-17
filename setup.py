@@ -23,9 +23,11 @@ setup(
                 "unambiguous_codes=unambiguous_codes:main",
                 "rnaQUASTcompare=rnaQUASTcompare:main",
                 "lr_lordec_contam_filter=lr_lordec_contam_filter:main",
-                "busco_find=busco_find:main"
+                "busco_find=busco_find:main",
+                "gfa2fa=gfa2fa:main"
             ],
         },
 )
+
 
 
