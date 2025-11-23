@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 from typing   import Iterable, Generator
+from math     import inf
 
 from file_services.utils import get_read_reader
 
@@ -19,14 +20,22 @@ class MyArgumentParser(ArgumentParser):
         super().__init__(prog=self.prog, description=self.description)
 
         self.add_argument("longreads")
-        self.add_argument("-m",
-                          metavar="",
-                          help="Minimum number of corrected bases in a long reads to accept [default: 21]",
-                          default=21)
         self.add_argument("-v",
                           metavar="",
                           help="Report progress every v processed long reads [default: 100,000]",
                           default=100_000)
+        
+        fo = self.add_argument_group("Filtering options")
+        
+        fo.add_argument("-mbc","--min_bases_corrected",
+                        type=int,
+                        default=21)
+        fo.add_argument("mbu","--max_bases_uncorrected",
+                        type=int,
+                        default=inf)
+        fo.add_argument("-mfc","--min_fraction_corrected",
+                        type=float,
+                        default=0.5)
 
 def main():
 
@@ -47,17 +56,23 @@ def main():
         
         if i % args.v == 0:
             print(f"{i:>8}")
-        
+            
         bases_total += longread["length"]
         
-        bases_corrected = len([c for c in longread["sequence"] if c.isupper()])
+        read_bases_corrected    = len([c for c in longread["sequence"] if c.isupper()])
+        read_bases_uncorrected  = longread["length"] - read_bases_corrected
+        read_fraction_corrected = read_bases_corrected / longread["length"]
         
-        if bases_corrected > args.m:
+        accept = ((read_bases_corrected > args.min_bases_corrected) and
+                  (read_bases_uncorrected < args.max_bases_uncorrected) and
+                  (read_fraction_corrected > args.min_fraction_corrected))
+        
+        if accept:
             accepted.append(longread)
             
             bases_accepted              += longread["length"]
-            bases_accepted_corrected    += bases_corrected
-            bases_accepted_uncorrected  += longread["length"] - bases_corrected
+            bases_accepted_corrected    += read_bases_corrected
+            bases_accepted_uncorrected  += read_bases_uncorrected
         else:
             rejected.append(longread)
             
@@ -87,6 +102,6 @@ def main():
     print("#    Simon says: Thanks for using SSfSBT!    #")
     print("##############################################")
 
-if __name__ == "__mai_":
+if __name__ == "__main_":
 
     main()
