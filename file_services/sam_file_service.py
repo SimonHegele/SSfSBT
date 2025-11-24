@@ -35,7 +35,7 @@ class SamFileService():
 
             for line in sam:
 
-                yield cls.parse_line(line)
+                yield cls.parse_string(line)
 
     @classmethod
     def write(cls, mappings: list[dict], file: str)->None:
@@ -45,3 +45,4 @@ class SamFileService():
             for mapping in mappings:
 
                 sam.write(cls.parse_dict(mapping))
+
