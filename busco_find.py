@@ -119,7 +119,7 @@ def filter_transcriptome(transcriptome: Iterable[dict[str, str]],
     
     for i, transcript in enumerate(transcriptome):
         
-        transcript_id = transcript["header"].split(" ")[0][1:]
+        transcript_id = transcript["header"].split(" ")[0]
         
         if transcript_id in list(busco_table["TRANS_id"].unique()):
             
@@ -128,7 +128,7 @@ def filter_transcriptome(transcriptome: Iterable[dict[str, str]],
             row = row.iloc[0]
             var = str(len(busco_table.loc[busco_table["BUSCO_id"]==row["BUSCO_id"]]))
             
-            transcript["header"]  = ">" + row["BUSCO_id"] + "_" + var + " " + row["TRANS_id"]  + " "
+            transcript["header"]  = ">" + row["BUSCO_id"] + "_" + var + "_" + row["TRANS_id"]  + " "
             transcript["header"] += "Fragmented:"   + str(row["Fragmented"])
             transcript["header"] += ";Score:"       + str(row["Score"])
             transcript["header"] += ";Length:"      + str(row["Length"])
