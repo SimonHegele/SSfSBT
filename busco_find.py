@@ -5,7 +5,6 @@ from pandas     import DataFrame, concat
 from time       import time
 from typing     import Iterable, Generator
 
-
 from file_services.fasta_file_service import FastaFileService
 
 class MyArgumentParser(ArgumentParser):
