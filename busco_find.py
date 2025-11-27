@@ -104,7 +104,7 @@ def filter_buscotable(busco_table: DataFrame,
         busco_subtables = [subtable.loc[subtable["Score"]==subtable["Score"].max()]
                            for subtable in busco_subtables]
     if longest:
-        busco_subtables = [subtable.loc[subtable["Score"]==subtable["Score"].max()]
+        busco_subtables = [subtable.loc[subtable["Length"]==subtable["Length"].max()]
                            for subtable in busco_subtables]
     
     return concat(busco_subtables)
