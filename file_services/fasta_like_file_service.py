@@ -21,6 +21,7 @@ class FastaLikeFileService(ABC):
     def read(cls, file_path:str, only=inf)->Generator:
          
         string = ""
+        n = 0
         
         with open(file_path, "r") as f:
 
@@ -28,7 +29,8 @@ class FastaLikeFileService(ABC):
 
                 if (line[0] == cls.separator) and (i > 0):
                     yield cls.parse_string(string)
-                    if i == only:
+                    n += 1
+                    if n == only:
                         return
                     string = ""
                 string += line
@@ -72,4 +74,5 @@ class FastaLikeFileService(ABC):
                 if not b in "ACGT":
                     d["sequence"] = choice(translate[b])
             yield d
+
 
