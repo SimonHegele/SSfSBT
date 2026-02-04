@@ -29,7 +29,7 @@ lengths                 | Basic sequence length distribution analysis for one or
 lr_lordec_contam_filter | Filtering contamination from long reads corrected by [HALC](https://github.com/lanl001/halc) or LoRDEC with [Kraken2](https://github.com/DerrickWood/kraken2) filtered short reads
 fa2fq                   | FASTA to FASTQ conversion with different error rates for upper and lower case denoted nucleotides
 fq2fa                   | FASTQ to FASTA conversion
-gfa2fa                  | FASTQ to FASTA conversion
+gfa2fa                  | GFA to FASTA conversion
 rnaQUASTcompare         | Merging multiple reports from rnaQUAST and compiling a plot
 sample                  | Subsampling a fixed number of sequences from FASTA/FASTQ-files
 unambiguous_codes       | Replacing ambiguity codes in FASTA/FASTQ-files
