@@ -22,6 +22,7 @@ pip install .
 
 Tool                    | Summary
 ------------------------|--------
+aln_pos2pos             | Finding corresponding positions in multiple sequence alignments
 busco_find              | Extracting BUSCO transcript sequences
 busco_merge             | Merging multiple reports from BUSCO and compiling a plot
 kallisto2nanosim        | Converting expression profiles from [Kallisto](https://github.com/pachterlab/kallisto) for [NanoSim](https://github.com/bcgsc/NanoSim)
