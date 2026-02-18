@@ -17,14 +17,10 @@ class MyArgumentParser(ArgumentParser):
         super().__init__(prog=self.prog, description=self.description)
 
         self.add_argument("alignment",
-                          help="Alignment file in FASTA-format")
+                          help="Alignment inputfile in FASTA-format")
         
-        self.add_argument("-p","--position",
-                          help="Only print alignment at chosen position (positions start with 1)",
-                          type=int)
-        self.add_argument("-s","--sequence",
-                          help="Refer to position of given sequence instead of alignment position",
-                          type=str)
+        self.add_argument("output",
+                          help="output directory for file in TSV-format")
         
 def parse_alignment(fasta_entries: list[dict]) -> DataFrame:
     
@@ -57,13 +53,8 @@ def main():
     fasta_entries = list(FastaFileService().read(args.alignment))
     alignment     = parse_alignment(fasta_entries)
     
-    if args.position is None:
-        print(alignment)
-    else:
-        if args.sequence is None:
-            print(alignment.iloc[[args.position]])
-        else:
-            print(alignment.loc[alignment[f"Pos {args.sequence}"]==args.position])
+    alignment.to_csv(args.output + "ssfsbt_msa.tsv", sep="\t")
+
 
 if __name__ == "__main__":
     main() 
